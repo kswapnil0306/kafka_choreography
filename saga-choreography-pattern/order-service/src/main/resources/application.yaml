@@ -1,15 +1,14 @@
 spring:
-  cloud:
-    stream:
-      function:
-        definition : orderSupplier;paymentEventConsumer
-      bindings:
-        orderSupplier-out-0:
-          destination: order-event
-        paymentEventConsumer-in-0 :
-          destination: payment-event
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: order-service
+      auto-offset-reset: earliest
 
-
+logging:
+  level:
+    com.javatechie.saga: INFO
+    org.springframework.kafka: INFO
 
 server:
   port: 8081

@@ -1,14 +1,14 @@
 spring:
-  cloud:
-    stream:
-      function:
-        definition : paymentProcessor
-      bindings:
-        paymentProcessor-in-0 :
-          destination: order-event
-        paymentProcessor-out-0:
-          destination: payment-event
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: payment-service
+      auto-offset-reset: earliest
 
+logging:
+  level:
+    com.javatechie.saga: INFO
+    org.springframework.kafka: INFO
 
 server:
   port: 8082
